@@ -2,7 +2,12 @@
   "name": "knip-example",
   "packageManager": "yarn@4.5.3",
   "devDependencies": {
+    "@types/node": "22.10.1",
+    "knip": "5.39.1",
     "typescript": "5.7.2",
     "vitest": "2.1.8"
+  },
+  "scripts": {
+    "knip": "knip"
   }
 }
