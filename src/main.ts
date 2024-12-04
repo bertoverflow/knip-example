@@ -1,4 +1,4 @@
-import { getNow } from "./feature-a";
+import { getNow } from "./date-module";
 
 console.log(">>> Started!");
 
