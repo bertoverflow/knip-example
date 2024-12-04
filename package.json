@@ -1,4 +1,8 @@
 {
   "name": "knip-example",
-  "packageManager": "yarn@4.2.2"
+  "packageManager": "yarn@4.5.3",
+  "devDependencies": {
+    "typescript": "5.7.2",
+    "vitest": "2.1.8"
+  }
 }
