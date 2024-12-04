@@ -7,6 +7,7 @@
     "eslint": "9.16.0",
     "globals": "15.13.0",
     "knip": "5.39.1",
+    "prettier": "3.4.2",
     "typescript": "5.7.2",
     "typescript-eslint": "8.17.0",
     "vitest": "2.1.8"
