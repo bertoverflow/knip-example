@@ -14,3 +14,11 @@ export const formatDateAsIso8601String = (date: Date) => {
 export const getYearOfDate = (date: Date) => {
   return dayjs(date).year();
 };
+
+export const getMonthOfDate = (date: Date) => {
+  return dayjs(date).month();
+};
+
+export const getDayOfDate = (date: Date) => {
+  return dayjs(date).day();
+};
