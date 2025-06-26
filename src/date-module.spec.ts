@@ -3,6 +3,7 @@ import {
   formatDateAsIso8601String,
   getNowAsIso8601String,
 } from "./date-module";
+import { firstDecemberOf2024 } from "./date.fixture";
 
 describe("getNowAsIso8601String", () => {
   beforeEach(() => {
@@ -23,8 +24,8 @@ describe("getNowAsIso8601String", () => {
 
 describe("formatDateAsIso8601String", () => {
   it("will format a date as ISO 8601", () => {
-    const date = new Date(0);
+    const date = firstDecemberOf2024();
     const result = formatDateAsIso8601String(date);
-    expect(result).toEqual("1970-01-01T00:00:00.000Z");
+    expect(result).toEqual("2024-12-01T00:00:00.000Z");
   });
 });
