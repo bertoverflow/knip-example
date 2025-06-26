@@ -1,8 +1,8 @@
-import { getNow } from "./date-module";
+import { getNowAsIso8601String } from "./date-module";
 
 console.log(">>> Started!");
 
-const now = getNow();
+const now = getNowAsIso8601String();
 
 console.log(">>> Now: ", now);
 

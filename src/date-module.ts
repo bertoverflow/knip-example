@@ -2,12 +2,12 @@ import dayjs from "dayjs";
 // @ts-expect-error ignore missing types
 import now from "lodash/now";
 
-export const getNow = () => {
+export const getNowAsIso8601String = () => {
   // return moment().format();
-  return formatDate(new Date(now()));
+  return formatDateAsIso8601String(new Date(now()));
 };
 
-export const formatDate = (date: Date) => {
+export const formatDateAsIso8601String = (date: Date) => {
   return dayjs(date).toISOString();
 };
 
