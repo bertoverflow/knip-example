@@ -17,6 +17,8 @@
 ```bash
 yarn create @knip/config
 ```
+- adds knip and its peer dependencies (typescript + @types/nodes) to the project
+
 - run knip
 ```bash
 yarn knip
@@ -110,8 +112,35 @@ yarn knip --exports
 yarn knip --production
 ```
 
-- production mode
-- add a .fixture file for a test-file
+- production mode is basically
+  - > Only entry and project patterns suffixed with !
+  - > Only the start and postinstall scripts
+  - and only the "normal" dependencies in the package.json are checked
+- `scr/math-module.ts`
+  - delete together with the test file
+- `src/date.fixture.ts`
+  - explain knip that this is NOT a production project file
+  - exclamation mark at the beginning and end
+  - without the exclamation mark at the end, it would not even be considered as a project file
+  - 📒️️ `4.knip.config.ts`
+- `vitest.setup.ts`
+  - error in the plugin IMHO
+  - resolved the same way as the fixture
+  - 📒️️ `5.knip.config.ts`
+- unused dependency `pretty-error`
+  - only the `start` command checked in production mode
+  - -> pretty-error can be made a devDependency
+- unlisted binary `tsx`
+  - the `start` command is checked and assumed to be the production command
+  - -> `tsx` should be a production dependency
+- unused export `formatDateAsIso8601String`
+  - we are exporting this function because we want to seperately test it
+  - common use case
+  - 📒️️ `knip.config.production.ts`
+  - `"knip:production": "knip --production --config knip.config.production.ts ",`
+  - we need to add the new config to our entries (bug in knip plugin IMHO)
+  - 📒️️ `6.knip.config.ts`
+
 
 ## how to debug the knip configuration (very optional)
 
