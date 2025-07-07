@@ -6,4 +6,8 @@ const now = getNowAsIso8601String();
 
 console.log(">>> Now: ", now);
 
-throw new Error("That did not work out :(");
+if (now !== "2025-01-01T00:00:00.000Z") {
+  throw new Error("Script can only be called on 2025-01-01!");
+}
+
+// further code here...
