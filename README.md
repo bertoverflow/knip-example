@@ -4,9 +4,10 @@
 
 - [ ] checkout the demo branch and reset it
 - [ ] open in a browser
-    - https://knip.dev/overview/getting-started
-    - https://knip.dev/reference/plugins
-    - https://knip.dev/guides/handling-issues
+
+  - https://knip.dev/overview/getting-started
+  - https://knip.dev/reference/plugins
+  - https://knip.dev/guides/handling-issues
 
 - 🎮️ doing stuff (editing package.json, deleting files, etc.)
 - ⌨️ command in terminal
@@ -21,7 +22,7 @@
 - vitest as test runner
 - look into package.json
 - run lint, typecheck and tests -> all green :)
-- main target is `yarn start`
+- main target is `pnpm run start`
   - IGNORE start:pretty for now
 - run main target -> error?
 - have a look at the `main.ts` file -> error seems strange, but ok (it is an exampe project to highlight knip 🙈)
@@ -36,15 +37,19 @@
 - https://knip.dev/overview/getting-started
 
 - install knip
+
 ```bash
-yarn create @knip/config
+pnpm create @knip/config
 ```
+
 - adds knip and its peer dependencies (typescript + @types/nodes) to the project
 
 - run knip
+
 ```bash
-yarn knip
+pnpm run knip
 ```
+
 - show the full output
 - LOTS of issues
 - start with only a subset of the reported issues
@@ -53,7 +58,7 @@ yarn knip
 ### start with unused files
 
 ```bash
-yarn knip --files
+pnpm run knip --files
 ```
 
 - `src/math-utils.ts`
@@ -61,23 +66,27 @@ yarn knip --files
   - so we check with the IDE that the file IS actually unused -> it is
     - 🎮️ delete `src/math-utils.ts`
 - but wait... how does knip determine something is unused? why is `main.ts` NOT unused? (check with IDE)
+
   - **entry vs. project files**
   - 📄 copy to README.md
     - > unused files = project files - (entry files + resolved files)
   - show the basic project-file and entry-file matcher
   - 📄 copy to README.md
+
     ```typescript
-    const DEFAULT_PROJECT_FILES = '**/*.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!'
-    
+    const DEFAULT_PROJECT_FILES = "**/*.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!";
+
     const DEFAULT_ENTRIES = [
-    '{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!',
-    'src/{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!',
-    ]
+      "{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
+      "src/{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
+    ];
     ```
+
   - knip then checks for imports, require calls, and even some forms of dynamic imports etc.
+
 - `scripts/helper` -> hmmm... we use it manually -> we have to help knip
   - option a) -> add it to `package.json`
-    - 🎮️ `"helper": "node scripts/helper.js"` 
+    - 🎮️ `"helper": "node scripts/helper.js"`
     - explain that knip parses the `package.json` file to look for entry files
   - option b) -> knip config
     - 📒️️ `0.knip.config.ts`
@@ -86,17 +95,16 @@ yarn knip --files
     - this still works because we have the `start` commands, but better to be explicit
     - 📒️️ `1.knip.config.ts`
 
-
 ### dependencies
 
 ```bash
-yarn knip --dependencies
+pnpm run knip --dependencies
 ```
 
 - `moment` -> unused dependency (project switched to dayjs)
-  - ⌨️️ `yarn remove moment`
+  - ⌨️️ `pnpm remove moment`
 - `@vitest/coverage-istanbul` -> unused devDependency
-  - ⌨️️ `yarn remove @vitest/coverage-istanbul`
+  - ⌨️️ `pnpm remove @vitest/coverage-istanbul`
 - but wait... how does knip know that `@vitest/coverage-v8` IS used?
   - **plugin system**
     - understands how to parse configs
@@ -107,8 +115,8 @@ yarn knip --dependencies
     - example: Next.js plugin registers all page.tsx files as entry files
 - ignore `webpack` for the moment
 - unlisted dependency `lodash/now`
-  - ⌨️ `yarn why lodash`
-  - ⌨️ `yarn add lodash`
+  - ⌨️ `pnpm why lodash`
+  - ⌨️ `pnpm add lodash`
 - unlisted binary `ts-node`
   - we switched from `ts-node` to `tsx` but forgot to adapt the target -> nice hint :)
     - 🎮️️ replace `ts-node` with `tsx` in command in package.json
@@ -126,25 +134,23 @@ yarn knip --dependencies
     > That’s why it’s strongly recommended to try and remedy unused files first.
     > Better entry and project file coverage will solve many cases of reported unused dependencies.
 
-
 ### exports
 
 ```bash
-yarn knip --exports
+pnpm run knip --exports
 ```
 
 - `getYearOfDate` -> unused (IDE already HINT at this, but not catched by linter)
   - 🎮️ we can remove the `export` modifier
-  - ⌨️ `yarn lint`  -> linter now gets it
+  - ⌨️ `pnpm run lint` -> linter now gets it
 - explain that knip + linter work together and there is a working loop
 - what if you have 300 issues reported here???
-- `yarn knip --exports --fix`
+- `pnpm run knip --exports --fix`
 - then again remove with the help of the linter
 - this will automatically remove the `CalculationResult` type export in `math-module.ts`
   - hmmm... but we actually WANTED this to be exported (it IS used in the file, it is the interface -> common pattern to expose this)
 - explain that you can configure that exported interfaces are fine
 - 📒️️ `3.knip.config.ts`
-
 
 ### production mode
 
@@ -152,7 +158,7 @@ yarn knip --exports
 - problem: it is used in the test files
 
 ```bash
-yarn knip --production
+pnpm run knip --production
 ```
 
 - production mode is basically (https://knip.dev/features/production-mode)
@@ -189,7 +195,6 @@ yarn knip --production
   - we also need to add the new knip config to our entries (bug in knip plugin IMHO)
   - 📒️️ `6.knip.config.ts`
 
-
 ## Further Infos
 
 - works with monorepos
@@ -200,10 +205,11 @@ yarn knip --production
 ## how to debug the knip configuration (very optional)
 
 ```bash
-yarn knip --debug | sed 's/\x1b\[[0-9;]*[mG]//g' > knip_debug.txt
+pnpm run knip --debug | sed 's/\x1b\[[0-9;]*[mG]//g' > knip_debug.txt
 ```
 
 ## TODOs
+
 - add example for WIP code
 - maybe improve the examples at least a bit :D
 - add some tests

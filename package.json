@@ -1,12 +1,11 @@
 {
   "name": "knip-example",
-  "packageManager": "yarn@4.9.2",
   "type": "module",
   "scripts": {
     "knip": "knip",
     "start": "tsx src/main.ts",
     "start:pretty": "ts-node --require pretty-error/start src/main.ts",
-    "qa": "yarn format:check && yarn lint && yarn typecheck && yarn test",
+    "qa": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint",
@@ -36,5 +35,12 @@
     "vitest": "2.1.8",
     "webpack": "5.99.9",
     "yargs": "18.0.0"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm",
+    "bun": "please-use-pnpm",
+    "pnpm": ">= 10.0.0"
   }
 }
