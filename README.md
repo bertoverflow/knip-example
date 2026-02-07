@@ -4,7 +4,6 @@
 
 - [ ] checkout the demo branch and reset it
 - [ ] open in a browser
-
   - https://knip.dev/overview/getting-started
   - https://knip.dev/reference/plugins
   - https://knip.dev/guides/handling-issues
@@ -66,7 +65,6 @@ pnpm run knip --files
   - so we check with the IDE that the file IS actually unused -> it is
     - 🎮️ delete `src/math-utils.ts`
 - but wait... how does knip determine something is unused? why is `main.ts` NOT unused? (check with IDE)
-
   - **entry vs. project files**
   - 📄 copy to README.md
     - > unused files = project files - (entry files + resolved files)
