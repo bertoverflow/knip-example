@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   formatDateAsIso8601String,
   getNowAsIso8601String,
-} from "./date-module";
-import { firstDecemberOf2024 } from "./date.fixture";
+} from "./date-module.js";
+import { firstDecemberOf2024 } from "./date.fixture.js";
 
 describe("getNowAsIso8601String", () => {
   beforeEach(() => {

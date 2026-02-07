@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calculateSquare } from "./math-module";
+import { calculateSquare } from "./math-module.js";
 
 describe("calculateSquare", () => {
   it("will calculate the square of 4", () => {

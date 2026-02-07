@@ -1,9 +1,4 @@
 {
-  "extends": "@tsconfig/node22/tsconfig.json",
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "skipLibCheck": true
-  },
+  "extends": "@tsconfig/node24/tsconfig.json",
   "include": ["*.d.ts", "src"]
 }

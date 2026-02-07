@@ -1,4 +1,4 @@
-import { getNowAsIso8601String } from "./date-module";
+import { getNowAsIso8601String } from "./date-module.js";
 
 console.log(">>> Started!");
 
