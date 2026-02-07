@@ -1,10 +1,8 @@
 import dayjs from "dayjs";
-// @ts-expect-error ignore missing types
-import now from "lodash/now";
 
 export const getNowAsIso8601String = () => {
   // return moment().format();
-  return formatDateAsIso8601String(new Date(now()));
+  return formatDateAsIso8601String(new Date());
 };
 
 export const formatDateAsIso8601String = (date: Date) => {

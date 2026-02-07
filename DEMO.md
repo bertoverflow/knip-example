@@ -104,9 +104,6 @@ pnpm run knip --dependencies
   - https://knip.dev/reference/plugins
     - example: Next.js plugin registers all page.tsx files as entry files
 - ignore `webpack` for the moment
-- unlisted dependency `lodash/now`
-  - ⌨️ `pnpm why lodash`
-  - ⌨️ `pnpm add lodash`
 - unlisted binary `ts-node`
   - we switched from `ts-node` to `tsx` but forgot to adapt the target -> nice hint :)
     - 🎮️️ replace `ts-node` with `tsx` in command in package.json
