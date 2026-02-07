@@ -1,7 +1,7 @@
 import type { KnipConfig } from "knip";
 
 const config: KnipConfig = {
-  entry: ["scripts/helper.mjs"],
+  entry: ["scripts/random-number.mjs"],
 };
 
 export default config;

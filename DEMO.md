@@ -74,11 +74,12 @@ pnpm run knip --files
 
   - knip then checks for imports, require calls, and even some forms of dynamic imports etc.
 
-- `scripts/helper` -> hmmm... we use it manually -> we have to help knip
-  - option a) -> add it to `package.json`
-    - 🎮️ `"helper": "node scripts/helper.js"`
+- `scripts/environment-helper` -> hmmm... we use it manually -> we have to help knip
+  - add it to `package.json`
+    - 🎮️ `"setup-environment": "node scripts/environment-helper.js"`
     - explain that knip parses the `package.json` file to look for entry files
-  - option b) -> knip config
+- `scripts/random-number.mjs` -> we use that from time to time, but do not want to put it in the package.json 
+  - knip config
     - 📒️️ `0.knip.config.ts`
     - this works, but there is a subtle issue: we replaced the default entry files
     - > The values you set override the default values, they are not merged.
@@ -116,7 +117,7 @@ pnpm run knip --dependencies
   - 📒️️ `2.knip.config.ts`
   - -> also gives you a place to DOCUMENT stuff
 - back to the overall picture: why files BEFORE dependencies ?
-  - show that `yargs` is an unused devDependency when we remove `scripts/helper.mjs` from the knip configuration
+  - show that `yargs` is an unused devDependency when we remove `scripts/random-number.mjs` from the knip configuration
     > Dependencies imported in unused files are reported as unused dependencies.
     > That’s why it’s strongly recommended to try and remedy unused files first.
     > Better entry and project file coverage will solve many cases of reported unused dependencies.

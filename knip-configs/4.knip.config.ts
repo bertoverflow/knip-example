@@ -8,7 +8,7 @@ const DEFAULT_ENTRIES = [
 const DEFAULT_PROJECT_FILES = "**/*.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!";
 
 const config: KnipConfig = {
-  entry: [...DEFAULT_ENTRIES, "scripts/helper.mjs"],
+  entry: [...DEFAULT_ENTRIES, "scripts/random-number.mjs"],
   project: [DEFAULT_PROJECT_FILES, "!**/**.fixture.ts!"],
   ignoreDependencies: [
     // this is required for our arcane-legacy-dependency to work

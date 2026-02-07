@@ -6,7 +6,7 @@ const DEFAULT_ENTRIES = [
 ];
 
 const config: KnipConfig = {
-  entry: [...DEFAULT_ENTRIES, "scripts/helper.mjs"],
+  entry: [...DEFAULT_ENTRIES, "scripts/random-number.mjs"],
   ignoreDependencies: [
     // this is required for our arcane-legacy-dependency to work
     "webpack",

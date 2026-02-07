@@ -10,7 +10,7 @@ const DEFAULT_PROJECT_FILES = "**/*.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!";
 const config: KnipConfig = {
   entry: [
     ...DEFAULT_ENTRIES,
-    "scripts/helper.mjs",
+    "scripts/random-number.mjs",
     "knip.config.production.ts",
   ],
   project: [DEFAULT_PROJECT_FILES, "!**/**.fixture.ts!", "!vitest.setup.ts!"],
