@@ -199,8 +199,5 @@ pnpm run knip --debug | sed 's/\x1b\[[0-9;]*[mG]//g' > knip_debug.txt
 ## TODOs
 
 - add example for WIP code
-- maybe improve the examples at least a bit :D
-- add some tests
-- update dependencies
 - add renovate
 - push as open source example
