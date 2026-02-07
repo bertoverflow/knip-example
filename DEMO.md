@@ -23,8 +23,8 @@
 - run lint, typecheck and tests -> all green :)
 - main target is `pnpm run start`
   - IGNORE start:pretty for now
-- run main target -> error?
-- have a look at the `main.ts` file -> error seems strange, but ok (it is an exampe project to highlight knip 🙈)
+- run main target -> error? (maintenance only allowed at night)
+- have a look at the `main.ts` file -> script only runs at night (example project to highlight knip 🙈)
 
 ## guided tour to knip
 

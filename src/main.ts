@@ -1,13 +1,12 @@
-import { getNowAsIso8601String } from "./date-module.js";
+import { getNowAsIso8601String, isNightTime } from "./date-module.js";
+import { doMaintenance } from "./maintenance-module.js";
 
-console.log(">>> Started!");
+console.log(">>> Job started at: ", getNowAsIso8601String());
 
-const now = getNowAsIso8601String();
-
-console.log(">>> Now: ", now);
-
-if (now !== "2025-01-01T00:00:00.000Z") {
-  throw new Error("Script can only be called on 2025-01-01!");
+if (!isNightTime()) {
+  throw new Error("Maintenance can only be performed at night!");
 }
+
+doMaintenance();
 
 // further code here...

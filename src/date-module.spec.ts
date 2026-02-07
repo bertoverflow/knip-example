@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   formatDateAsIso8601String,
   getNowAsIso8601String,
+  isNightTime,
 } from "./date-module.js";
 import { firstDecemberOf2024 } from "./date.fixture.js";
 
@@ -19,6 +20,26 @@ describe("getNowAsIso8601String", () => {
     vi.setSystemTime(fixedDate);
     const result = getNowAsIso8601String();
     expect(result).toEqual("2000-01-01T00:00:00.000Z");
+  });
+});
+
+describe("isNightTime", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("returns true during night hours", () => {
+    vi.setSystemTime(new Date("2000-01-01T23:00:00.000Z"));
+    expect(isNightTime()).toBe(true);
+  });
+
+  it("returns false during day hours", () => {
+    vi.setSystemTime(new Date("2000-01-01T14:00:00.000Z"));
+    expect(isNightTime()).toBe(false);
   });
 });
 
