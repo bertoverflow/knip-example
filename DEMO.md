@@ -166,17 +166,6 @@ pnpm run knip --production
   - error in the plugin IMHO
   - resolved the same way as the fixture
   - 📒️️ `4.knip.config.ts`
-- unused dependency `pretty-error`
-  - only the `start` command is checked in production mode
-  - `pretty-error` is currently listed as a production dependency
-  - two options:
-    - a) move pretty-error to `devDependencies`
-    - b) configure knip to ignore this dependency in our production config
-  - 🎮️ we now choose option a) move pretty-error to `devDependencies` in package.json
-- unlisted binary `tsx`
-  - the `start` command is checked and assumed to be the production command
-  - -> `tsx` should be a production dependency (currently it is a devDependency)
-  - 🎮️ move tsx to `dependencies` in package.json
 - unused export `formatDateAsIso8601String`
   - we are exporting this function because we want to separately test it
   - common use case
@@ -197,6 +186,23 @@ pnpm run knip --production
 ```bash
 pnpm run knip --debug | sed 's/\x1b\[[0-9;]*[mG]//g' > knip_debug.txt
 ```
+
+## OPTIONAL
+
+- when declaring `pretty-error` as **dependency**, we can observe and explain the following behavior in production mode
+  - unused dependency `pretty-error`
+      - only the `start` command is checked in production mode
+      - `pretty-error` is currently listed as a production dependency
+      - two options:
+          - a) move pretty-error to `devDependencies`
+          - b) configure knip to ignore this dependency in our production config
+      - 🎮️ we now choose option a) move pretty-error to `devDependencies` in package.json
+- when declaring `tsx` as **devDependency**, we can observe and explain the following behavior in production mode
+  - unlisted binary `tsx`
+      - the `start` command is checked and assumed to be the production command
+      - -> `tsx` should be a production dependency (currently it is a devDependency)
+      - 🎮️ move tsx to `dependencies` in package.json
+
 
 ## TODOs
 
