@@ -12,9 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
-    "qa": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run test",
-    "knip": "knip",
-    "knip:production": "knip --production --config knip.config.production.ts"
+    "qa": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run test"
   },
   "dependencies": {
     "dayjs": "1.11.19",
@@ -29,7 +27,6 @@
     "@vitest/coverage-v8": "4.0.18",
     "eslint": "9.39.2",
     "globals": "17.3.0",
-    "knip": "5.83.1",
     "prettier": "3.8.1",
     "pretty-error": "4.0.0",
     "typescript": "5.9.3",
