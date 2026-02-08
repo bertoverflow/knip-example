@@ -83,7 +83,8 @@ pnpm run knip --files
     - 📒️️ `0.knip.config.ts`
     - this works, but there is a subtle issue: we replaced the default entry files
     - > The values you set override the default values, they are not merged.
-    - this still works because we have the `start` commands
+    - so "src/main.ts" is no longer in the list of entry files
+    - this still works because we have the `start` command
 
 ### dependencies
 
@@ -113,7 +114,7 @@ pnpm run knip --dependencies
 - Überleitung: But what if knip DOES not figure it out?
   - back to the webpack devDependency
     - fictional scenario: we have a legacy dependency that requires webpack to be provided
-  - 📒️️ `2.knip.config.ts`
+  - 📒️️ `1.knip.config.ts`
   - -> also gives you a place to DOCUMENT stuff
 - back to the overall picture: why files BEFORE dependencies ?
   - show that `yargs` is an unused devDependency when we remove `scripts/random-number.mjs` from the knip configuration
@@ -137,7 +138,7 @@ pnpm run knip --exports
 - this will automatically remove the `CalculationResult` type export in `math-module.ts`
   - hmmm... but we actually WANTED this to be exported (it IS used in the file, it is the interface -> common pattern to expose this)
 - explain that you can configure that exported interfaces are fine
-- 📒️️ `3.knip.config.ts`
+- 📒️️ `2.knip.config.ts`
 
 ### production mode
 
@@ -158,11 +159,13 @@ pnpm run knip --production
   - explain knip that this is NOT a production project file
   - exclamation mark at the beginning and end
   - without the exclamation mark at the end, it would not even be considered as a project file
-  - 📒️️ `4.knip.config.ts`
+  - 📒️️ `3.knip.config.ts`
+  - very hard to read -> use a helper function
+  - 📒️️ `3a.knip.config.ts`
 - `vitest.setup.ts`
   - error in the plugin IMHO
   - resolved the same way as the fixture
-  - 📒️️ `5.knip.config.ts`
+  - 📒️️ `4.knip.config.ts`
 - unused dependency `pretty-error`
   - only the `start` command is checked in production mode
   - `pretty-error` is currently listed as a production dependency
@@ -180,7 +183,7 @@ pnpm run knip --production
   - 📒️️ `knip.config.production.ts`
   - 🎮️ `"knip:production": "knip --production --config knip.config.production.ts ",`
   - we also need to add the new knip config to our entries (bug in knip plugin IMHO)
-  - 📒️️ `6.knip.config.ts`
+  - 📒️️ `5.knip.config.ts`
 
 ## Further Infos
 
