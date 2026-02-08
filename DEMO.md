@@ -52,27 +52,22 @@ pnpm run knip
 pnpm run knip --files
 ```
 
-- `src/math-utils.ts`
-  - when starting out with knip: always check manually first, do not trust :D
-  - so we check with the IDE that the file IS actually unused -> it is
-    - 🎮️ delete `src/math-utils.ts`
-- but wait... how does knip determine something is unused? why is `main.ts` NOT unused? (check with IDE)
-  - **entry vs. project files**
-  - 📄 copy to README.md
-    - > unused files = project files - (entry files + resolved files)
-  - show the basic project-file and entry-file matcher
+- good: not every file is reported as unused :D
+  - so it is working in general
+  - but remember how knip works... what is used as entry file actually?
   - 📄 copy to README.md
 
-    ```typescript
-    const DEFAULT_PROJECT_FILES = "**/*.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!";
+```typescript
+// unused files = project files - (entry files + resolved files)
 
-    const DEFAULT_ENTRIES = [
-      "{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
-      "src/{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
-    ];
-    ```
-
-  - knip then checks for imports, require calls, and even some forms of dynamic imports etc.
+const defaultConfig = {
+  entry: [
+    "{index,cli,main}.{js,cjs,mjs,jsx,ts,cts,mts,tsx}",
+    "src/{index,cli,main}.{js,cjs,mjs,jsx,ts,cts,mts,tsx}",
+  ],
+  project: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}!"],
+};
+```
 
 - `scripts/environment-helper` -> hmmm... we use it manually -> we have to help knip
   - add it to `package.json`
@@ -85,6 +80,10 @@ pnpm run knip --files
     - > The values you set override the default values, they are not merged.
     - so "src/main.ts" is no longer in the list of entry files
     - this still works because we have the `start` command
+- `src/math-utils.ts`
+    - when starting out with knip: always check manually first, do not trust :D
+    - so we check with the IDE that the file IS actually unused -> it is
+        - 🎮️ delete `src/math-utils.ts`
 
 ### dependencies
 
@@ -92,9 +91,9 @@ pnpm run knip --files
 pnpm run knip --dependencies
 ```
 
-- `moment` -> unused dependency (project switched to dayjs)
+- `moment` -> search in project -> project switched to dayjs
   - ⌨️️ `pnpm remove moment`
-- `@vitest/coverage-istanbul` -> unused devDependency
+- `@vitest/coverage-istanbul` -> check vitest config -> project switched to v8
   - ⌨️️ `pnpm remove @vitest/coverage-istanbul`
 - but wait... how does knip know that `@vitest/coverage-v8` IS used?
   - **plugin system**
@@ -117,7 +116,7 @@ pnpm run knip --dependencies
   - 📒️️ `1.knip.config.ts`
   - -> also gives you a place to DOCUMENT stuff
 - back to the overall picture: why files BEFORE dependencies ?
-  - show that `yargs` is an unused devDependency when we remove `scripts/random-number.mjs` from the knip configuration
+  - show that `yargs` is an unused devDependency when we remove the "setup-environment" target from the package.json
     > Dependencies imported in unused files are reported as unused dependencies.
     > That’s why it’s strongly recommended to try and remedy unused files first.
     > Better entry and project file coverage will solve many cases of reported unused dependencies.
