@@ -8,10 +8,16 @@ const devtoolsOrTestingProjectFile = (projectPattern: string) => {
 };
 
 const config: KnipConfig = {
-  entry: ["src/health-check.ts"],
+  entry: [
+    "src/main.ts!",
+    "src/health-check.ts!",
+    "scripts/environment-helper.mjs",
+    "knip.config.production.ts",
+  ],
   project: [
     DEFAULT_PROJECT_FILES,
     devtoolsOrTestingProjectFile("**/**.fixture.ts"),
+    devtoolsOrTestingProjectFile("vitest.setup.ts"),
   ],
   ignoreDependencies: [
     // this is required for our arcane-legacy-dependency to work

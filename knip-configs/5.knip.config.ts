@@ -8,7 +8,11 @@ const devtoolsOrTestingProjectFile = (projectPattern: string) => {
 };
 
 const config: KnipConfig = {
-  entry: ["src/health-check.ts", "knip.config.production.ts"],
+  entry: [
+    "src/main.ts!",
+    "src/health-check.ts!",
+    "scripts/environment-helper.mjs",
+  ],
   project: [
     DEFAULT_PROJECT_FILES,
     devtoolsOrTestingProjectFile("**/**.fixture.ts"),

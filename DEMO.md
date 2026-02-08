@@ -152,26 +152,35 @@ pnpm run knip --production
   - > Only entry and project patterns suffixed with !
   - > Only the "start" and "postinstall" scripts (in package.json)
   - and only the "normal" dependencies in the package.json are checked
+- `src/main.ts`, `src/maintenance-module.ts` etc. -> clearly something is going wrong
+  - remember how I said, that setting an entry overwrites the default entries?
+  - and that it is still ok, because we have the "start" command in the package.json
+  - turns out that knip is a bit special here
+  - relying on commands in the package.json does not work well with production mode,
+    so I recommend to always explicitly set the entry files in the knip config
+  - same issue also with `scripts/environment-helper.mjs`
+  - point out exclamation mark at the end of the pattern to distinguish between normal and production entries
+  - 📒️️ `3.knip.config.ts`
 - `scr/math-module.ts`
   - 🎮️ delete together with the test file
 - `src/date.fixture.ts`
   - explain knip that this is NOT a production project file
   - exclamation mark at the beginning and end
   - without the exclamation mark at the end, it would not even be considered as a project file
-  - 📒️️ `3.knip.config.ts`
+  - 📒️️ `4.knip.config.ts`
   - very hard to read -> use a helper function
-  - 📒️️ `3a.knip.config.ts`
+  - 📒️️ `4a.knip.config.ts`
 - `vitest.setup.ts`
   - error in the plugin IMHO
   - resolved the same way as the fixture
-  - 📒️️ `4.knip.config.ts`
+  - 📒️️ `5.knip.config.ts`
 - unused export `formatDateAsIso8601String`
   - we are exporting this function because we want to separately test it
   - common use case
-  - 📒️️ `knip.config.production.ts`
+  - 📒️️ `6.knip.config.production.ts`
   - 🎮️ `"knip:production": "knip --production --config knip.config.production.ts ",`
   - we also need to add the new knip config to our entries (bug in knip plugin IMHO)
-  - 📒️️ `5.knip.config.ts`
+  - 📒️️ `6.knip.config.ts`
 
 ## Further Infos
 
