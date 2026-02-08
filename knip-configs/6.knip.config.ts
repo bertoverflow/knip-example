@@ -1,15 +1,10 @@
 import type { KnipConfig } from "knip";
 
-const DEFAULT_ENTRIES = [
-  "{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
-  "src/{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
-];
-
 const DEFAULT_PROJECT_FILES = "**/*.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!";
 
 const config: KnipConfig = {
   entry: [
-    ...DEFAULT_ENTRIES,
+    "src/main.ts",
     "scripts/random-number.mjs",
     "knip.config.production.ts",
   ],

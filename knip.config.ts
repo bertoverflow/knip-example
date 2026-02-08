@@ -56,6 +56,7 @@ const config: KnipConfig = {
   entry: [
     productionEntry("src/main.ts"),
     devtoolsOrTestingEntry("scripts/random-number.mjs"),
+    // unfortunately, Knip does not handle its own config parameter correctly
     devtoolsOrTestingEntry("knip.config.production.ts"),
   ],
   project: [
