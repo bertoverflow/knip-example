@@ -76,15 +76,14 @@ pnpm run knip --files
 
 - `scripts/environment-helper` -> hmmm... we use it manually -> we have to help knip
   - add it to `package.json`
-    - 🎮️ `"setup-environment": "node scripts/environment-helper.js"`
+    - 🎮️ `"setup-environment": "node scripts/environment-helper.mjs"`
     - explain that knip parses the `package.json` file to look for entry files
-- `scripts/random-number.mjs` -> we use that from time to time, but do not want to put it in the package.json 
+- `scr/health-check.ts` -> called to check if the deployment is healthy, we do not want it in the package.json 
   - knip config
     - 📒️️ `0.knip.config.ts`
     - this works, but there is a subtle issue: we replaced the default entry files
     - > The values you set override the default values, they are not merged.
-    - this still works because we have the `start` commands, but better to be explicit
-    - 📒️️ `1.knip.config.ts`
+    - this still works because we have the `start` commands
 
 ### dependencies
 
