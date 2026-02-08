@@ -2,8 +2,6 @@
   "name": "knip-example",
   "type": "module",
   "scripts": {
-    "knip": "knip",
-    "knip:production": "knip --production --config knip.config.production.ts",
     "start": "tsx src/main.ts",
     "start:pretty": "ts-node --require pretty-error/start src/main.ts",
     "format": "prettier --write .",
@@ -14,7 +12,9 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
-    "qa": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run test"
+    "qa": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run test",
+    "knip": "knip",
+    "knip:production": "knip --production --config knip.config.production.ts"
   },
   "dependencies": {
     "dayjs": "1.11.19",
