@@ -2,7 +2,7 @@
 
 ## TODOs before talk
 
-- [ ] checkout the demo branch and reset it
+- [ ] clone the repo a second time and checkout the demo branch
 - [ ] open in a browser
   - https://knip.dev/overview/getting-started
   - https://knip.dev/reference/plugins
@@ -76,10 +76,6 @@ const defaultConfig = {
 - `scr/health-check.ts` -> called to check if the deployment is healthy, we do not want it in the package.json 
   - knip config
     - 📒️️ `0.knip.config.ts`
-    - this works, but there is a subtle issue: we replaced the default entry files
-    - > The values you set override the default values, they are not merged.
-    - so "src/main.ts" is no longer in the list of entry files
-    - this still works because we have the `start` command
 - `src/math-utils.ts`
     - when starting out with knip: always check manually first, do not trust :D
     - so we check with the IDE that the file IS actually unused -> it is
@@ -123,6 +119,8 @@ pnpm run knip --dependencies
 
 ### exports
 
+- ok, we found some completely unused files, but often only parts of a file are unused
+
 ```bash
 pnpm run knip --exports
 ```
@@ -148,19 +146,21 @@ pnpm run knip --exports
 pnpm run knip --production
 ```
 
-- production mode is basically (https://knip.dev/features/production-mode)
-  - > Only entry and project patterns suffixed with !
-  - > Only the "start" and "postinstall" scripts (in package.json)
-  - and only the "normal" dependencies in the package.json are checked
-- `src/main.ts`, `src/maintenance-module.ts` etc. -> clearly something is going wrong
-  - remember how I said, that setting an entry overwrites the default entries?
-  - and that it is still ok, because we have the "start" command in the package.json
-  - turns out that knip is a bit special here
-  - relying on commands in the package.json does not work well with production mode,
-    so I recommend to always explicitly set the entry files in the knip config
-  - same issue also with `scripts/environment-helper.mjs`
-  - point out exclamation mark at the end of the pattern to distinguish between normal and production entries
+- production mode general idea: test files are NOT production files, so they are not taken into account when analyzing the project
+  - OPTIONAL explanation: more details (https://knip.dev/features/production-mode)
+    - > Only entry and project patterns suffixed with !
+    - > Only the "start" and "postinstall" scripts (in package.json)
+    - and only the "normal" dependencies in the package.json are checked
+- `src/main.ts`, `src/maintenance-module.ts`, `scripts/environment-helper.mjs` etc. -> clearly something is going wrong 
+  - 2 problems:
+    - a) setting an entry in the config actually overwrites the default entries, it does not merge with them
+      - > The values you set override the default values, they are not merged.
+      - so `src/main.ts` is no longer in the list of entry files
+    - b) production mode does not really take the commands in the package.json into account
+      - according to the docs, it looks for "start" and "postinstall" commands, but seems to be buggy
+  - so I recommend to always explicitly set the entry files in the knip config
   - 📒️️ `3.knip.config.ts`
+  - point out exclamation mark at the end of the pattern to distinguish between normal and production entries
 - `scr/math-module.ts`
   - 🎮️ delete together with the test file
 - `src/date.fixture.ts`
