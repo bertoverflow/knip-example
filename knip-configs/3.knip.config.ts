@@ -6,14 +6,6 @@ const config: KnipConfig = {
     "src/health-check.ts!",
     "scripts/environment-helper.mjs",
   ],
-  ignoreDependencies: [
-    // this is required for our arcane-legacy-dependency to work
-    "webpack",
-  ],
-  ignoreExportsUsedInFile: {
-    interface: true,
-    type: true,
-  },
 };
 
 export default config;

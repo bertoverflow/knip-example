@@ -9,14 +9,6 @@ const config: KnipConfig = {
     "scripts/environment-helper.mjs",
   ],
   project: [DEFAULT_PROJECT_FILES, "!**/**.fixture.ts!"],
-  ignoreDependencies: [
-    // this is required for our arcane-legacy-dependency to work
-    "webpack",
-  ],
-  ignoreExportsUsedInFile: {
-    interface: true,
-    type: true,
-  },
 };
 
 export default config;

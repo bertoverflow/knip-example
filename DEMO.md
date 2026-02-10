@@ -99,23 +99,6 @@ pnpm run knip --dependencies
     - and even `vitest.setup.ts` is resolved via the plugin!
   - https://knip.dev/reference/plugins
     - example: Next.js plugin registers all page.tsx files as entry files
-- ignore `webpack` for the moment
-- unlisted binary `ts-node`
-  - we switched from `ts-node` to `tsx` but forgot to adapt the target -> nice hint :)
-    - 🎮️️ replace `ts-node` with `tsx` in command in package.json
-  - knip knows that certain tools come with a binary
-  - it has also a list of expected/known os-binaries: https://github.com/webpro-nl/knip/blob/b70958a58ea255ee7a7831e404786da807ca93d7/packages/knip/src/constants.ts#L37-L139
-- also highlight the `start:pretty` and use of `--require pretty-error/start`
-- Überleitung: But what if knip DOES not figure it out?
-  - back to the webpack devDependency
-    - fictional scenario: we have a legacy dependency that requires webpack to be provided
-  - 📒️️ `1.knip.config.ts`
-  - -> also gives you a place to DOCUMENT stuff
-- back to the overall picture: why files BEFORE dependencies ?
-  - show that `yargs` is an unused devDependency when we remove the "setup-environment" target from the package.json
-    > Dependencies imported in unused files are reported as unused dependencies.
-    > That’s why it’s strongly recommended to try and remedy unused files first.
-    > Better entry and project file coverage will solve many cases of reported unused dependencies.
 
 ### exports
 
@@ -132,10 +115,6 @@ pnpm run knip --exports
 - what if you have 300 issues reported here???
 - `pnpm run knip --exports --fix`
 - then again remove with the help of the linter
-- this will automatically remove the `CalculationResult` type export in `math-module.ts`
-  - hmmm... but we actually WANTED this to be exported (it IS used in the file, it is the interface -> common pattern to expose this)
-- explain that you can configure that exported interfaces are fine
-- 📒️️ `2.knip.config.ts`
 
 ### production mode
 
@@ -194,26 +173,3 @@ pnpm run knip --production
 ```bash
 pnpm run knip --debug | sed 's/\x1b\[[0-9;]*[mG]//g' > knip_debug.txt
 ```
-
-## OPTIONAL
-
-- when declaring `pretty-error` as **dependency**, we can observe and explain the following behavior in production mode
-  - unused dependency `pretty-error`
-      - only the `start` command is checked in production mode
-      - `pretty-error` is currently listed as a production dependency
-      - two options:
-          - a) move pretty-error to `devDependencies`
-          - b) configure knip to ignore this dependency in our production config
-      - 🎮️ we now choose option a) move pretty-error to `devDependencies` in package.json
-- when declaring `tsx` as **devDependency**, we can observe and explain the following behavior in production mode
-  - unlisted binary `tsx`
-      - the `start` command is checked and assumed to be the production command
-      - -> `tsx` should be a production dependency (currently it is a devDependency)
-      - 🎮️ move tsx to `dependencies` in package.json
-
-
-## TODOs
-
-- add example for WIP code
-- add renovate
-- push as open source example

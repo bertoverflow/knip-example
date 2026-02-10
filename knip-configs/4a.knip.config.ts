@@ -17,14 +17,6 @@ const config: KnipConfig = {
     DEFAULT_PROJECT_FILES,
     devtoolsOrTestingProjectFile("**/**.fixture.ts"),
   ],
-  ignoreDependencies: [
-    // this is required for our arcane-legacy-dependency to work
-    "webpack",
-  ],
-  ignoreExportsUsedInFile: {
-    interface: true,
-    type: true,
-  },
 };
 
 export default config;

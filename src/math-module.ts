@@ -1,4 +1,4 @@
-export type CalculationResult = {
+type CalculationResult = {
   input: number;
   operation: string;
   output: number;

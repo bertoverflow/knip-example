@@ -65,14 +65,6 @@ const config: KnipConfig = {
     // unfortunately, Knip does not handle the setupFiles section in the vitest config correctly
     devtoolsOrTestingProjectFile("vitest.setup.ts"),
   ],
-  ignoreDependencies: [
-    // this is required for our arcane-legacy-dependency to work
-    "webpack",
-  ],
-  ignoreExportsUsedInFile: {
-    interface: true,
-    type: true,
-  },
 };
 
 export default config;
