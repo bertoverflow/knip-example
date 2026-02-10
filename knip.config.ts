@@ -17,7 +17,6 @@ import type { KnipConfig } from "knip";
  - added via plugins that are automatically loaded by knip depending on your dependencies
 
  When knip reports an unused file (in "normal" mode) that YOU KNOW is actually used, you can either
- - call it in a script in your package.json
  - add it as a normal entry in this config if it is dev tooling related (e.g. a script that generates some code)
     - Note: you can use the `devtoolsOrTestingEntry()` helper function to add a production entry
  - add is as a production entry in this config if it is production code (e.g. the entry to a lambda handler function)
